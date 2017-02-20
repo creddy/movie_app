@@ -27,13 +27,5 @@ module MovieApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    Dynamoid.configure do |config|
-      config.namespace = "#{Rails.application.railtie_name}_#{Rails.env}"
-      config.endpoint = ENV.fetch("DYNAMODB_URL")
-      config.access_key = "REPLACE_WITH_ACCESS_KEY_ID"
-      config.secret_key = "REPLACE_WITH_SECRET_ACCESS_KEY"
-      config.region = "us-east-1"
-    end
   end
 end

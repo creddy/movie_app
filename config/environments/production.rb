@@ -85,4 +85,11 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  Dynamoid.configure do |config|
+    config.namespace = "#{Rails.application.railtie_name}_#{Rails.env}"
+    config.access_key = ENV.fetch("ACCESS_KEY_ID")
+    config.secret_key = ENV.fetch("SECRET_ACCESS_KEY")
+    config.region = "us-east-1"
+  end
 end

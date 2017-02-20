@@ -48,4 +48,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  Dynamoid.configure do |config|
+    config.namespace = "#{Rails.application.railtie_name}_#{Rails.env}"
+    config.endpoint = ENV.fetch("DYNAMODB_URL")
+    config.access_key = "REPLACE_WITH_ACCESS_KEY_ID"
+    config.secret_key = "REPLACE_WITH_SECRET_ACCESS_KEY"
+    config.region = "us-east-1"
+  end
 end

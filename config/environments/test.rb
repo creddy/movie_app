@@ -39,4 +39,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Dynamoid.configure do |config|
+    config.namespace = "#{Rails.application.railtie_name}_#{Rails.env}"
+    config.endpoint = ENV.fetch("DYNAMODB_URL")
+    config.access_key = "REPLACE_WITH_ACCESS_KEY_ID"
+    config.secret_key = "REPLACE_WITH_SECRET_ACCESS_KEY"
+    config.region = "us-east-1"
+  end
 end
