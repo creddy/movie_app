@@ -1,4 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="col-sm-6">
+    <%= label_tag "title", "Title" %>
+    <p class="h5"><%= @movie.title %></p>
+    <%= label_tag "release_date", "Release Date" %>
+    <p class="h5"><%= @movie.release_date %></p>
+    <%= label_tag "storyline", "Storyline" %>
+    <p class="h5"><%= @movie.storyline %></p>
+    <%= label_tag "genre", "Genre" %>
+    <p class="h5"><%= @movie.genre %></p>
+    <%= label_tag "imdb_link", "IMDB Link" %>
+    <a class="h5" href="<%= @movie.imdb_link =%>"><%= @movie.imdb_link =%></a>
+  </div>
+</div>
+<br></br>
+
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>

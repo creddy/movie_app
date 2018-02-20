@@ -7,7 +7,7 @@ describe MoviesController, type: :controller do
     {
       title: SecureRandom.uuid,
       storyline: SecureRandom.uuid,
-      release_date: 1.year.ago,
+      release_date: 1.year.ago.to_date.to_s,
       genre: "Documentary",
       imdb_link: "https://imdb.com"
     }
@@ -29,9 +29,12 @@ describe MoviesController, type: :controller do
       expect(response).to be_success
     end
 
-    it "displays the movie title" do
+    it "displays the movie information" do
       get :index
-      expect(response.body).to include(movie.title)
+      aggregate_failures do
+        expect(response.body).to include(movie.title)
+        expect(response.body).to include(movie.release_date.to_s)
+      end
     end
 
     context "when a query parameter is present" do
@@ -55,6 +58,17 @@ describe MoviesController, type: :controller do
     it "returns a success response" do
       get :show, params: { id: movie.to_param }
       expect(response).to be_success
+    end
+
+    it "displays the movie information" do
+      get :show, params: { id: movie.to_param }
+      aggregate_failures do
+        expect(response.body).to include(movie.title)
+        expect(response.body).to include(movie.release_date.to_s)
+        expect(response.body).to include(movie.storyline)
+        expect(response.body).to include(movie.genre)
+        expect(response.body).to include(movie.imdb_link)
+      end
     end
   end
 

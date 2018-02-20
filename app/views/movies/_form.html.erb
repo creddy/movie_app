@@ -1,4 +1,4 @@
-<%= form_with(model: movie, local: true) do |form| %>
+<%= form_with(model: movie, class: 'form-group', local: true) do |form| %>
   <% if movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -11,7 +11,23 @@
     </div>
   <% end %>
 
+  <%= label_tag "title", "Title" %>
+  <%= form.text_field :title %>
+  <br></br>
+  <%= label_tag "release_date", "Release Date" %>
+  <%= form.text_field :release_date %>
+  <br></br>
+  <%= label_tag "storyline", "Storyline" %>
+  <%= form.text_area :storyline, size: "100x5" %>
+  <br></br>
+  <%= label_tag "genre", "Genre" %>
+  <%= form.text_field :genre %>
+  <br></br>
+  <%= label_tag "imdb_link", "IMDB Link" %>
+  <%= form.text_field :imdb_link %>
+  <br></br>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Movie", class: "btn btn-primary" %>
   </div>
 <% end %>
