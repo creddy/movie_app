@@ -7,7 +7,7 @@ describe MoviesController, type: :controller do
     {
       title: SecureRandom.uuid,
       storyline: SecureRandom.uuid,
-      release_date: 1.year.ago.to_date.to_s,
+      string_release_date: 1.year.ago.to_date.to_s,
       genre: "Documentary",
       imdb_link: "https://imdb.com"
     }
@@ -85,6 +85,11 @@ describe MoviesController, type: :controller do
     it "returns a success response" do
       get :edit, params: { id: movie.to_param }
       expect(response).to be_success
+    end
+
+    it "displays the current release date" do
+      get :edit, params: { id: movie.to_param }
+      expect(response.body).to include(movie.release_date.to_s)
     end
   end
 

@@ -59,6 +59,6 @@ class MoviesController < ApplicationController
   end
 
   def movie_attributes
-    %i[title storyline genre release_date imdb_link]
+    %i[title storyline genre string_release_date imdb_link]
   end
 end

@@ -15,7 +15,7 @@
   <%= form.text_field :title %>
   <br></br>
   <%= label_tag "release_date", "Release Date" %>
-  <%= form.text_field :release_date %>
+  <%= form.text_field :string_release_date, value: @movie.release_date %>
   <br></br>
   <%= label_tag "storyline", "Storyline" %>
   <%= form.text_area :storyline, size: "100x5" %>
