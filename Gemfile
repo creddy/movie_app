@@ -36,6 +36,7 @@ gem "foreman", "~> 0.64.0"
 gem "twitter-bootstrap-rails", "~> 4.0.0"
 
 group :development, :test do
+  gem "capybara"
   gem "pry"
   gem "rspec-rails"
 end

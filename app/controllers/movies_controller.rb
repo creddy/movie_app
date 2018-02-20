@@ -2,7 +2,11 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show edit update destroy]
 
   def index
-    @movies = Movie.all
+    @movies = if params[:q].present?
+                Movie.where("title.contains" => params[:q])
+              else
+                Movie.all
+              end
   end
 
   def show

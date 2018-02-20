@@ -1,17 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Movie List</h1>
+<h3>Movie List</h3>
 
-<table>
+<div class="row">
+  <div class="col-sm-6">
+    <%= form_tag(movies_path, method: :get, class: 'form-group', role: 'form') do %>
+      <%= label_tag "search", "Search by movie title" %>
+      <%= text_field_tag "q", params[:q] %>
+      <%= button_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<table class="movies">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="3">Title</th>
     </tr>
   </thead>
 
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
+        <td><%= movie.title %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>

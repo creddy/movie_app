@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe MoviesController, type: :controller do
+  render_views
+
   let(:valid_attributes) {
     {
       title: SecureRandom.uuid,
@@ -23,8 +25,27 @@ describe MoviesController, type: :controller do
     let!(:movie) { Movie.create!(valid_attributes) }
 
     it "returns a success response" do
-      get :index, params: {}
+      get :index
       expect(response).to be_success
+    end
+
+    it "displays the movie title" do
+      get :index
+      expect(response.body).to include(movie.title)
+    end
+
+    context "when a query parameter is present" do
+      let!(:movie) { Movie.create!(title: "hello") }
+      let!(:different_title_movie) { Movie.create!(title: "foobar") }
+
+      it "returns movies that contain the query in the title" do
+        get :index, params: { q: movie.title }
+        aggregate_failures do
+          expect(response).to be_success
+          expect(response.body).not_to include(different_title_movie.title)
+          expect(response.body).to include(movie.title)
+        end
+      end
     end
   end
 
