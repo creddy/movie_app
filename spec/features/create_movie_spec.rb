@@ -17,7 +17,7 @@ describe "Create a Movie" do
     fill_in("movie[string_release_date]", with: attributes[:release_date])
     fill_in("movie[genre]", with: attributes[:genre])
     fill_in("movie[imdb_link]", with: attributes[:imdb_link])
-    click_button "Create Movie"
+    click_button "Submit"
     expect(page).to have_content(attributes[:title])
   end
 end
