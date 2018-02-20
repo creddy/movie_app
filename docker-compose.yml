@@ -1,6 +1,16 @@
 version: "2"
+volumes:
+  dynamodb-data: {}
 services:
   movie_app:
     build: .
+    links:
+      - dynamodb
     ports:
       - "3000:3000"
+    environment:
+      - DYNAMODB_URL=http://dynamodb:8000
+  dynamodb:
+    image: dwmkerr/dynamodb:latest
+    volumes:
+      - dynamodb-data:/opt/dynamodb
