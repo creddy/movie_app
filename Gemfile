@@ -30,6 +30,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "foreman", "~> 0.64.0"
+
 group :development, :test do
   gem "pry"
   gem "rspec-rails"
