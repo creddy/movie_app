@@ -1,24 +1,31 @@
-# README
+# Welcome to Movie App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
 
-Things you may want to cover:
+#### Install the dependencies
 
-* Ruby version
+1. Use your ruby version manager to install the ruby version in `.ruby-version`.
 
-* System dependencies
+2. Install Docker https://docs.docker.com/install/
 
-* Configuration
+#### Build
 
-* Database creation
+`$ docker-compose build`
 
-* Database initialization
+#### Database setup
 
-* How to run the test suite
+`$ docker-compose run movie_app rake db:setup`
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Running RSpec
 
-* Deployment instructions
+`$ docker-compose run movie_app rspec spec`
 
-* ...
+#### Style linting
+
+`$ docker-compose run movie_app rubocop -R`
+
+#### Running the application locally
+
+1. `$ docker-compose up`
+
+2. Visit `http://localhost:3000`
