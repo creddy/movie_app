@@ -33,6 +33,7 @@ gem "jbuilder", "~> 2.5"
 gem "aws-sdk", "~> 2"
 gem "dynamoid", "~> 2"
 gem "foreman", "~> 0.64.0"
+gem "twitter-bootstrap-rails", "~> 4.0.0"
 
 group :development, :test do
   gem "pry"
