@@ -2,11 +2,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show edit update destroy]
 
   def index
-    @movies = if params[:q].present?
-                Movie.where("title.contains" => params[:q])
-              else
-                Movie.all
-              end
+    @movies = MovieService.new.list(q: params[:q])
   end
 
   def show

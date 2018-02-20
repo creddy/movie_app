@@ -19,6 +19,13 @@ describe Movie do
     end
   end
 
+  describe "title_lower" do
+    it "is set on save so that searching can be done without case sensitivity" do
+      subject.save
+      expect(subject.title_lower).to eq(title.downcase)
+    end
+  end
+
   context "release date" do
     let(:release_date) { "2018-02-04" }
     let(:attributes) { { title: title, string_release_date: release_date } }

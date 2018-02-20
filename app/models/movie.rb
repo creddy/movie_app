@@ -2,14 +2,16 @@ class Movie
   include Dynamoid::Document
 
   field :title
+  field :title_lower
   field :storyline
   field :release_date, :date
   field :genre
   field :imdb_link
 
   validates :title, presence: true
-
   validate :release_date_format
+
+  before_save :store_title_lower
 
   def string_release_date=(date)
     self[:string_release_date] = date
@@ -20,6 +22,10 @@ class Movie
   end
 
   private
+
+  def store_title_lower
+    self.title_lower = title.downcase
+  end
 
   def release_date_format
     return unless self[:string_release_date].present?
