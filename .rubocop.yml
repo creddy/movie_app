@@ -1,0 +1,53 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - !ruby/regexp /\/bin\//
+    - !ruby/regexp /\/tmp\//
+    - !ruby/regexp /\/vendor\//
+    - !ruby/regexp /\/schema.rb/
+  MaxFilesInCache: 20000
+  CacheRootDirectory: "/tmp/rubocop"
+  AllowSymlinksInCacheRootDirectory: true
+  TargetRubyVersion: 2.3
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ModuleLength:
+  Exclude:
+    - !ruby/regexp /\/spec\//
+
+Metrics/BlockLength:
+  Exclude:
+    - !ruby/regexp /\/spec\//
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+  FunctionalMethods:
+     - before
+     - after
+     - subject
+     - subject!
+     - let
+     - let!
+     - html
+
+  AutoCorrect: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/AndOr:
+  AutoCorrect: false
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
